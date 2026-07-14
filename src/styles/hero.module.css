@@ -1,0 +1,322 @@
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  min-height: 700px;
+  overflow: hidden;
+  background: #030303;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Video layers */
+.videoBg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: blur(60px) brightness(0.25) saturate(1.5);
+  transform: scale(1.15);
+  z-index: 1;
+}
+
+.videoFg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 2;
+}
+
+/* Cinematic gradient overlays */
+.gradientTop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 30%;
+  background: linear-gradient(to bottom, rgba(3, 3, 3, 0.7) 0%, transparent 100%);
+  z-index: 4;
+  pointer-events: none;
+}
+
+.gradientBottom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 55%;
+  background: linear-gradient(to top, rgba(3, 3, 3, 1) 0%, rgba(3, 3, 3, 0.75) 35%, rgba(3, 3, 3, 0.2) 70%, transparent 100%);
+  z-index: 4;
+  pointer-events: none;
+}
+
+.gradientSides {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(3, 3, 3, 0.6) 100%);
+  z-index: 4;
+  pointer-events: none;
+}
+
+/* Ambient glow behind content */
+.ambientGlow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(249, 115, 22, 0.06) 0%, transparent 70%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* Main content — pinned to bottom so face is visible above */
+.content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0 24px 100px;
+  pointer-events: none;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  letter-spacing: 3.5px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+  margin-bottom: 16px;
+  opacity: 0;
+}
+
+.badgeDot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #f97316;
+  flex-shrink: 0;
+  box-shadow: 0 0 8px rgba(249, 115, 22, 0.8);
+}
+
+.nameWrapper {
+  margin-bottom: 14px;
+  overflow: hidden;
+}
+
+.firstName,
+.lastName {
+  display: block;
+  font-size: clamp(32px, 5vw, 64px);
+  font-weight: 900;
+  line-height: 0.95;
+  letter-spacing: -1.5px;
+  text-transform: uppercase;
+  color: #ffffff;
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.lastName {
+  background: linear-gradient(135deg, #f97316 0%, #fbbf24 40%, #fb923c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: clamp(10px, 1.2vw, 13px);
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.4);
+  margin-bottom: 24px;
+  line-height: 1.8;
+  opacity: 0;
+}
+
+.socialRow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  opacity: 0;
+  pointer-events: all;
+}
+
+.socialLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.55);
+  text-decoration: none;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.socialLink:hover {
+  background: rgba(249, 115, 22, 0.15);
+  border-color: rgba(249, 115, 22, 0.4);
+  color: #f97316;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(249, 115, 22, 0.2);
+}
+
+/* Video controls */
+.controls {
+  position: absolute;
+  bottom: 90px;
+  right: 36px;
+  z-index: 6;
+  display: flex;
+  gap: 10px;
+}
+
+.controlBtn {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.controlBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+}
+
+/* Sound badge */
+.soundBadge {
+  position: absolute;
+  bottom: 90px;
+  left: 36px;
+  z-index: 6;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  transition: opacity 0.5s ease;
+}
+
+.soundPulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #f97316;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+/* Scroll indicator */
+.scrollIndicator {
+  position: absolute;
+  bottom: 32px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.scrollIndicator:hover {
+  opacity: 0.8 !important;
+}
+
+.scrollText {
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.scrollLine {
+  width: 1px;
+  height: 52px;
+  background: rgba(255, 255, 255, 0.15);
+  position: relative;
+  overflow: hidden;
+}
+
+.scrollLine::after {
+  content: "";
+  position: absolute;
+  top: -100%;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, transparent, rgba(249, 115, 22, 0.8), transparent);
+  animation: scrollDrop 2.2s ease-in-out infinite;
+}
+
+@keyframes scrollDrop {
+  0% { top: -100%; }
+  100% { top: 200%; }
+}
+
+/* No video placeholder */
+.placeholderBg {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background:
+    radial-gradient(ellipse at 20% 50%, rgba(249, 115, 22, 0.07) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 20%, rgba(96, 165, 250, 0.05) 0%, transparent 50%),
+    radial-gradient(ellipse at 60% 80%, rgba(167, 139, 250, 0.05) 0%, transparent 50%),
+    #030303;
+}
+
+@media (max-width: 768px) {
+  .firstName,
+  .lastName {
+    letter-spacing: -1px;
+  }
+
+  .controls {
+    bottom: 100px;
+    right: 20px;
+  }
+
+  .soundBadge {
+    bottom: 100px;
+    left: 20px;
+  }
+}
