@@ -36,173 +36,95 @@ export default function About() {
           scrollTrigger: { trigger: sectionRef.current, start: "top 75%", once: true } }
       );
     }, sectionRef);
-
     return () => ctx.revert();
   }, []);
 
   return (
-    <section
-      id="about"
-      ref={sectionRef}
-      style={{
-        padding: "120px 0",
-        background: "#030303",
-        position: "relative",
-      }}
-    >
-      <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 40px" }}>
-        {/* Label */}
-        <p
-          style={{
-            fontSize: "11px",
-            letterSpacing: "4px",
-            textTransform: "uppercase",
-            color: "#f97316",
-            marginBottom: "20px",
-          }}
-        >
+    <section id="about" ref={sectionRef} style={{ padding: "80px 0", background: "#030303", position: "relative" }}>
+      <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 20px" }}>
+
+        <p style={{ fontSize: "11px", letterSpacing: "4px", textTransform: "uppercase", color: "#f97316", marginBottom: "20px" }}>
           01 — About
         </p>
 
-        {/* Heading */}
         <h2
           className="about-heading"
           style={{
-            fontSize: "clamp(36px, 6vw, 72px)",
+            fontSize: "clamp(32px, 6vw, 72px)",
             fontWeight: 900,
             lineHeight: 0.95,
             letterSpacing: "-2px",
             textTransform: "uppercase",
             color: "white",
-            marginBottom: "60px",
+            marginBottom: "48px",
           }}
         >
           Building AI That
           <br />
-          <span
-            style={{
-              background: "linear-gradient(135deg, #f97316, #fbbf24)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-          >
+          <span style={{ background: "linear-gradient(135deg, #f97316, #fbbf24)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
             Ships at Scale
           </span>
         </h2>
 
-        {/* Bio */}
+        {/* Bio — stacks on mobile */}
         <div
           className="about-bio"
           style={{
             display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "60px",
-            marginBottom: "80px",
-            alignItems: "start",
-          }}
-        >
-          <div>
-            <p
-              style={{
-                fontSize: "17px",
-                lineHeight: 1.85,
-                color: "rgba(255,255,255,0.55)",
-                fontWeight: 300,
-              }}
-            >
-              AI Engineer with{" "}
-              <span style={{ color: "white", fontWeight: 500 }}>6+ years</span>{" "}
-              building production-grade LLM applications, agentic RAG systems,
-              and autonomous agent workflows across AWS, Azure, and GCP.
-            </p>
-          </div>
-          <div>
-            <p
-              style={{
-                fontSize: "17px",
-                lineHeight: 1.85,
-                color: "rgba(255,255,255,0.55)",
-                fontWeight: 300,
-              }}
-            >
-              Currently at{" "}
-              <span style={{ color: "#f97316", fontWeight: 500 }}>Wells Fargo</span>{" "}
-              where I ship LLM integrations processing 50K+ daily records, RAG
-              pipelines, and LLMOps infrastructure that cut token costs by 35%.
-            </p>
-          </div>
-        </div>
-
-        {/* Divider */}
-        <div
-          style={{
-            width: "100%",
-            height: "1px",
-            background: "rgba(255,255,255,0.06)",
+            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
+            gap: "32px",
             marginBottom: "60px",
           }}
-        />
-
-        {/* Skills grid */}
-        <p
-          style={{
-            fontSize: "11px",
-            letterSpacing: "4px",
-            textTransform: "uppercase",
-            color: "rgba(255,255,255,0.3)",
-            marginBottom: "32px",
-          }}
         >
+          <p style={{ fontSize: "16px", lineHeight: 1.85, color: "rgba(255,255,255,0.55)", fontWeight: 300 }}>
+            AI Engineer with{" "}
+            <span style={{ color: "white", fontWeight: 500 }}>6+ years</span>{" "}
+            building production-grade LLM applications, agentic RAG systems, and autonomous agent workflows across AWS, Azure, and GCP.
+          </p>
+          <p style={{ fontSize: "16px", lineHeight: 1.85, color: "rgba(255,255,255,0.55)", fontWeight: 300 }}>
+            Currently at{" "}
+            <span style={{ color: "#f97316", fontWeight: 500 }}>Wells Fargo</span>{" "}
+            shipping LLM integrations processing 50K+ daily records, RAG pipelines, and LLMOps infrastructure that cut token costs by 35%.
+          </p>
+        </div>
+
+        <div style={{ width: "100%", height: "1px", background: "rgba(255,255,255,0.06)", marginBottom: "48px" }} />
+
+        <p style={{ fontSize: "11px", letterSpacing: "4px", textTransform: "uppercase", color: "rgba(255,255,255,0.3)", marginBottom: "28px" }}>
           Tech Stack
         </p>
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
-            gap: "20px",
-          }}
-        >
+
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))", gap: "16px" }}>
           {SKILLS.map((group) => (
             <div
               key={group.category}
               className="skill-card"
               style={{
-                padding: "24px",
+                padding: "20px",
                 background: "rgba(255,255,255,0.03)",
                 border: "1px solid rgba(255,255,255,0.07)",
                 borderRadius: "12px",
                 transition: "border-color 0.3s ease, background 0.3s ease",
               }}
               onMouseEnter={(e) => {
-                const el = e.currentTarget;
-                el.style.borderColor = "rgba(249,115,22,0.3)";
-                el.style.background = "rgba(249,115,22,0.04)";
+                e.currentTarget.style.borderColor = "rgba(249,115,22,0.3)";
+                e.currentTarget.style.background = "rgba(249,115,22,0.04)";
               }}
               onMouseLeave={(e) => {
-                const el = e.currentTarget;
-                el.style.borderColor = "rgba(255,255,255,0.07)";
-                el.style.background = "rgba(255,255,255,0.03)";
+                e.currentTarget.style.borderColor = "rgba(255,255,255,0.07)";
+                e.currentTarget.style.background = "rgba(255,255,255,0.03)";
               }}
             >
-              <p
-                style={{
-                  fontSize: "10px",
-                  letterSpacing: "2.5px",
-                  textTransform: "uppercase",
-                  color: "#f97316",
-                  marginBottom: "16px",
-                  fontWeight: 600,
-                }}
-              >
+              <p style={{ fontSize: "10px", letterSpacing: "2.5px", textTransform: "uppercase", color: "#f97316", marginBottom: "14px", fontWeight: 600 }}>
                 {group.category}
               </p>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
+              <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
                 {group.items.map((item) => (
                   <span
                     key={item}
                     style={{
-                      fontSize: "12px",
-                      padding: "4px 10px",
+                      fontSize: "11px",
+                      padding: "3px 8px",
                       borderRadius: "4px",
                       background: "rgba(255,255,255,0.06)",
                       color: "rgba(255,255,255,0.6)",

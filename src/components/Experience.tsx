@@ -72,184 +72,76 @@ export default function Experience() {
           scrollTrigger: { trigger: sectionRef.current, start: "top 80%", once: true } }
       );
     }, sectionRef);
-
     return () => ctx.revert();
   }, []);
 
   return (
-    <section
-      id="experience"
-      ref={sectionRef}
-      style={{
-        padding: "120px 0",
-        background: "#060606",
-        position: "relative",
-      }}
-    >
-      <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 40px" }}>
-        <p
-          style={{
-            fontSize: "11px",
-            letterSpacing: "4px",
-            textTransform: "uppercase",
-            color: "#f97316",
-            marginBottom: "20px",
-          }}
-        >
+    <section id="experience" ref={sectionRef} style={{ padding: "80px 0", background: "#060606", position: "relative" }}>
+      <div style={{ maxWidth: "1100px", margin: "0 auto", padding: "0 20px" }}>
+
+        <p style={{ fontSize: "11px", letterSpacing: "4px", textTransform: "uppercase", color: "#f97316", marginBottom: "20px" }}>
           02 — Experience
         </p>
 
-        <h2
-          style={{
-            fontSize: "clamp(36px, 6vw, 72px)",
-            fontWeight: 900,
-            lineHeight: 0.95,
-            letterSpacing: "-2px",
-            textTransform: "uppercase",
-            color: "white",
-            marginBottom: "80px",
-          }}
-        >
-          Where I&apos;ve
-          <br />
-          <span
-            style={{
-              background: "linear-gradient(135deg, #f97316, #fbbf24)",
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-            }}
-          >
+        <h2 style={{
+          fontSize: "clamp(32px, 6vw, 72px)",
+          fontWeight: 900, lineHeight: 0.95, letterSpacing: "-2px",
+          textTransform: "uppercase", color: "white", marginBottom: "64px",
+        }}>
+          Where I&apos;ve<br />
+          <span style={{ background: "linear-gradient(135deg, #f97316, #fbbf24)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
             Made Impact
           </span>
         </h2>
 
-        {/* Timeline */}
         <div style={{ position: "relative" }}>
-          {/* Vertical line */}
-          <div
-            style={{
-              position: "absolute",
-              left: "0",
-              top: "12px",
-              bottom: "0",
-              width: "1px",
-              background:
-                "linear-gradient(to bottom, rgba(249,115,22,0.4), rgba(255,255,255,0.06))",
-            }}
-          />
+          <div style={{
+            position: "absolute", left: 0, top: "12px", bottom: 0, width: "1px",
+            background: "linear-gradient(to bottom, rgba(249,115,22,0.4), rgba(255,255,255,0.06))",
+          }} />
 
-          <div style={{ display: "flex", flexDirection: "column", gap: "64px" }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: "56px" }}>
             {JOBS.map((job, i) => (
-              <div
-                key={i}
-                className="exp-item"
-                style={{ paddingLeft: "40px", position: "relative" }}
-              >
-                {/* Dot */}
-                <div
-                  style={{
-                    position: "absolute",
-                    left: "-5px",
-                    top: "8px",
-                    width: "11px",
-                    height: "11px",
-                    borderRadius: "50%",
-                    background: job.color,
-                    boxShadow: `0 0 12px ${job.color}80`,
-                  }}
-                />
+              <div key={i} className="exp-item" style={{ paddingLeft: "32px", position: "relative" }}>
+                <div style={{
+                  position: "absolute", left: "-5px", top: "8px",
+                  width: "11px", height: "11px", borderRadius: "50%",
+                  background: job.color, boxShadow: `0 0 12px ${job.color}80`,
+                }} />
 
-                {/* Header */}
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "flex-start",
-                    marginBottom: "6px",
-                    flexWrap: "wrap",
-                    gap: "8px",
-                  }}
-                >
+                {/* Header — wraps on mobile */}
+                <div style={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  alignItems: "flex-start",
+                  flexWrap: "wrap",
+                  gap: "8px",
+                  marginBottom: "6px",
+                }}>
                   <div>
-                    <h3
-                      style={{
-                        fontSize: "20px",
-                        fontWeight: 700,
-                        color: "white",
-                        letterSpacing: "-0.5px",
-                      }}
-                    >
+                    <h3 style={{ fontSize: "clamp(16px, 2.5vw, 20px)", fontWeight: 700, color: "white", letterSpacing: "-0.5px" }}>
                       {job.company}
                     </h3>
-                    <p
-                      style={{
-                        fontSize: "13px",
-                        color: job.color,
-                        letterSpacing: "1px",
-                        marginTop: "4px",
-                        fontWeight: 500,
-                      }}
-                    >
+                    <p style={{ fontSize: "13px", color: job.color, letterSpacing: "1px", marginTop: "4px", fontWeight: 500 }}>
                       {job.role}
                     </p>
                   </div>
                   <div style={{ textAlign: "right" }}>
-                    <p
-                      style={{
-                        fontSize: "12px",
-                        color: "rgba(255,255,255,0.35)",
-                        letterSpacing: "1px",
-                        fontFamily: "var(--font-geist-mono)",
-                      }}
-                    >
+                    <p style={{ fontSize: "11px", color: "rgba(255,255,255,0.35)", letterSpacing: "1px", fontFamily: "var(--font-geist-mono)" }}>
                       {job.period}
                     </p>
-                    <p
-                      style={{
-                        fontSize: "11px",
-                        color: "rgba(255,255,255,0.25)",
-                        marginTop: "4px",
-                      }}
-                    >
+                    <p style={{ fontSize: "11px", color: "rgba(255,255,255,0.25)", marginTop: "4px" }}>
                       {job.location}
                     </p>
                   </div>
                 </div>
 
-                {/* Divider */}
-                <div
-                  style={{
-                    width: "100%",
-                    height: "1px",
-                    background: "rgba(255,255,255,0.06)",
-                    margin: "16px 0",
-                  }}
-                />
+                <div style={{ width: "100%", height: "1px", background: "rgba(255,255,255,0.06)", margin: "14px 0" }} />
 
-                {/* Highlights */}
                 <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
                   {job.highlights.map((h, j) => (
-                    <li
-                      key={j}
-                      style={{
-                        display: "flex",
-                        gap: "12px",
-                        marginBottom: "12px",
-                        fontSize: "14px",
-                        lineHeight: 1.7,
-                        color: "rgba(255,255,255,0.5)",
-                      }}
-                    >
-                      <span
-                        style={{
-                          color: job.color,
-                          flexShrink: 0,
-                          marginTop: "2px",
-                          fontSize: "12px",
-                        }}
-                      >
-                        ▸
-                      </span>
+                    <li key={j} style={{ display: "flex", gap: "10px", marginBottom: "10px", fontSize: "13px", lineHeight: 1.7, color: "rgba(255,255,255,0.5)" }}>
+                      <span style={{ color: job.color, flexShrink: 0, marginTop: "2px", fontSize: "11px" }}>▸</span>
                       {h}
                     </li>
                   ))}
